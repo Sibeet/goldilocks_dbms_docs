@@ -41,11 +41,11 @@ GOLDILOCKS는 동일한 장비에 설치되어 있다고 가정하며, 리스너
 제공된 telegraf 패키지 내부의 SQL파일을 실행하면 된다.
 단, telegraf에서 설정된 유저와 동일하거나 설정된 유저가 view에 대한 권한을 가지고 있어야 한다.
 
-<h6>
+~~~
 $ tar -xvf telegraf_package.tar.gz
 $ gsql(net) <username> <password> --import telegraf_package/sql/MonitoringView_CLUSTER.sql //모니터링을 위한 정보를 조회 가능한 뷰
 $ gsql(net) <username> <password> --import telegraf_package/sql/InitData_CLUSTER.sql //telegraf가 가져올 데이터를 위한 쿼리를 저장하는 테이블(TELEGRAF_METRIC_SETTINGS)
-</h6>
+~~~
 
 telegraf에서 사용하는 테이블의 구조는 다음과 같다.
 
@@ -104,10 +104,10 @@ urls = ["http://127.0.0.1:8086"]
 
 
 #### telegraf 실행
-<h6>
+~~~
 $ cd telegraf_package
 $ ./run_telegraf.sh
-</h6>
+~~~
 
 #### run_telegraf.sh 상세
 ~~~
@@ -144,7 +144,7 @@ influxDB를 설정 없이 실행하면 기본 포트 8086을 사용하게 된다
 
 #### INFLUXDB 실행
 
-<h6>
+~~~
 $ wget https://dl.influxdata.com/influxdb/releases/influxdb-1.6.0_linux_amd64.tar.gz
 $ tar -xvf influxdb-1.6.0_linux_amd64.tar.gz
 $ cd influxdb-1.6.0-1/usr/bin
@@ -153,7 +153,7 @@ $ ./influxd config > influxdb.conf
 $ ./influxd #default 실행
 or
 $ ./influxd -config influxdb.conf #포트 변경 등 config 변경시
-</h6>
+~~~
 
 #### INFLUXDB 설정 예시
 
@@ -173,11 +173,11 @@ bind-address = ":8086" //grafana, telegraf에서 influxdb 접촉시 사용할 �
 grafana의 기본 port는 3000이다.
 
 #### GRAFANA 실행
-<h6>
+~~~
 $ wget https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-5.2.2.linux-amd64.tar.gz
 $ tar -xvf grafana-5.2.2.linux-amd64.tar.gz
 $ ./bin/grafana-server
-</h6>
+~~~
 
 grafana-server 프로세스가 정상적으로 실행되었다면 브라우저를 통해 https://(addr):(port) 로 접속하면 된다.
 
